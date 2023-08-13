@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <link rel="stylesheet" href="Octave.css">
+
+  <!-- ===== Boxicons CSS ===== -->
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
+  <!-- ===== Owl Carousel ===== -->
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+
+  <!-- ===== Footer  ===== -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+
+  <title>Octave</title>
+  <style>
+    body {
+      overflow-x: hidden;
+    }
+  </style>
+
+  <html>
+
+</head>
+
+
+
+
+<body>
+  <!-- Side navigation bar  -->
+  <header>
+
+    <div class="sidebar close">
+      <ul class="nav-links">
+        <li>
+          <div class="iocn-link">
+            <a href="#">
+              <i class='bx bx-home'></i>
+            </a>
+          </div>
+        </li>
+        <!-- Top Trending -->
+        <li>
+          <div class="iocn-link">
+            <a href="#Trending">
+              <i class='bx bx-trending-up'></i>
+            </a>
+          </div>
+        </li>
+        <!-- An Album -->
+        <li>
+          <div class="iocn-link">
+            <a href="#Artist">
+              <i class='bx bx-male'></i>
+            </a>
+          </div>
+        </li>
+        <!-- Genre -->
+        <li>
+          <div class="iocn-link">
+            <a href="#Genre">
+              <i class='bx bx-loader'></i>
+            </a>
+          </div>
+        </li>
+        <!-- Artist -->
+        <li>
+          <div class="iocn-link">
+            <a href="#Album">
+              <i class='bx bx-album'></i>
+            </a>
+          </div>
+        </li>
+        <!-- Upload -->
+        <li>
+          <div class="iocn-link">
+            <a href="#Upload">
+              <i class='bx bx-upload'></i>
+            </a>
+          </div>
+        </li>
+        <!-- Logout -->
+        <li>
+          <div class="iocn-link"></div>
+          <a href="logout.php">
+            <i class='bx bxs-log-out'></i>
+          </a>
+    </div>
+    </li>
+    </ul>
+    </div>
+    <script>
+      let arrow = document.querySelectorAll(".arrow");
+      for (var i = 0; i < arrow.length; i++) {
+        arrow[i].addEventListener("click", (e) => {
+          let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+          arrowParent.classList.toggle("showMenu");
+        });
+      }
+      let sidebar = document.querySelector(".sidebar");
+      let sidebarBtn = document.querySelector(".bx-menu");
+      console.log(sidebarBtn);
+      sidebarBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("close");
+      });
+    </script>
+
+
+    <!-- Top navigation bar -->
+    <nav>
+      <div class="nav-bar">
+
+        <span class="logo navLogo"><a href="#">Octave</a></span>
+
+        <div class="darkLight-searchBox">
+          <div class="dark-light">
+
+        </div>
+
+
+          <div class="search-box">
+
+            <input class="search-input" type="text" placeholder="Search something...">
+            <button class="search-btn"><i class="fas fa-search"></i></button>
+
+          </div>
+        </div>
+      </div>
+      </div>
+    </nav>
+
+    <script>
+
+      const body = document.querySelector("body"),
+        nav = document.querySelector("nav"),
+        modeToggle = document.querySelector(".dark-light"),
+        searchToggle = document.querySelector(".searchToggle"),
+        sidebarOpen = document.querySelector(".sidebarOpen"),
+        siderbarClose = document.querySelector(".siderbarClose");
+
+      let getMode = localStorage.getItem("mode");
+      if (getMode && getMode === "dark-mode") {
+        body.classList.add("dark");
+      }
+
+      // js code to toggle dark and light mode
+      modeToggle.addEventListener("click", () => {
+        modeToggle.classList.toggle("active");
+        body.classList.toggle("dark");
+
+        // js code to keep user selected mode even page refresh or file reopen
+        if (!body.classList.contains("dark")) {
+          localStorage.setItem("mode", "light-mode");
+        } else {
+          localStorage.setItem("mode", "dark-mode");
+        }
+      });
+
+      // js code to toggle search box
+      searchToggle.addEventListener("click", () => {
+        searchToggle.classList.toggle("active");
+      });
+
+
+      //   js code to toggle sidebar
+      sidebarOpen.addEventListener("click", () => {
+        nav.classList.add("active");
+      });
+
+      body.addEventListener("click", e => {
+        let clickedElm = e.target;
+
+        if (!clickedElm.classList.contains("sidebarOpen") && !clickedElm.classList.contains("menu")) {
+          nav.classList.remove("active");
+        }
+      });
+    </script>
+  </header>
+
+
+
+
+  <!-- Home page Image -->
+
+
+  <div class="about" id="Home">
+
+    <div class="home_page">
+
+      <div class="container">
+        <img src="Images/home_page.png">
+        <div class="bottom-left">Groove to the beats of your<br>favourite <span class="auto-input"
+            style="color:#4070F4"></span></div>
+      </div>
+      <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+      <script>
+
+        var typed = new Typed(".auto-input", {
+          strings: [" Songs", " Genres", " Artists", " Albums"],
+          typeSpeed: 100,
+          backSpeed: 100,
+          loop: true
+        })
+      </script>
+
+      <br>
+
+      <!-- Top trending block -->
+      <a name="Trending">
+        <div class="title">
+          <h2> Top Trending </h2>
+        </div>
+        <br><br><br>
+        <div class="cards-list" id="Trending">
+
+          <div class="card 1">
+            <div class="card_image" id="0">
+              <img id="image" onclick="playaudio('audio1')" src="Images/The_Weeknd_-_Starboy.png">
+              <audio id="audio1" src="songs/Starboy.mp3"></audio>
+            </div>
+            <div class="card_title">
+              <p>Starboy</p>
+            </div>
+            <div class="song_artist">
+              <p>The Weeknd</p>
+            </div>
+          </div>
+
+
+
+          <div class="card 2">
+            <div class="card_image" id="1">
+              <img onclick="playaudio('audio2')" src="Images/MILEY_CYRUS_FLOWERS.webp">
+              <audio id="audio2" src="songs/Miley Cyrus - Flowers(Maddj.in).mp3"></audio>
+            </div>
+            <div class="card_title ">
+              <p>Flowers</p>
+            </div>
+            <div class="song_artist">
+              <p>Miley Cyrus</p>
+            </div>
+          </div>
+
+
+          <div class="card 3">
+            <div class="card_image" id="2">
+              <img onclick="playaudio('audio3')" src="Images/Sam_Smith_and_Kim_Petras_-_Unholy.png" />
+              <audio id="audio3" src="songs/Sam Smith - Unholy(Maddj.in).mp3"></audio>
+            </div>
+            <div class="card_title">
+              <p>Unholy</p>
+            </div>
+            <div class="song_artist">
+              <p>Sam Smith, Kim Petras</p>
+            </div>
+          </div>
+
+
+          <div class="card 4">
+            <div class="card_image" id="2">
+              <img onclick="playaudio('audio4')" src="Images/download.jpeg" />
+              <audio id="audio4" src="songs/Unstoppable(PaglaSongs).mp3"></audio>
+            </div>
+            <div class="card_title">
+              <p>Unstoppable</p>
+            </div>
+            <div class="song_artist">
+              <p>Sia</p>
+            </div>
+          </div>
+
+
+          <div class="card 5">
+            <div class="card_image" id="2">
+              <img onclick="playaudio('audio5')" src="Images/ab67616d0000b273ba5db46f4b838ef6027e6f96.jpeg" />
+              <audio id="audio5" src="songs/Ed_Sheeran_-_Perfect.mp3"></audio>
+            </div>
+            <div class="card_title">
+              <p>Perfect</p>
+            </div>
+            <div class="song_artist">
+              <p>Ed Sheeran</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 2nd row -->
+        <div class="cards-list">
+
+          <div class="card 1">
+            <div class="card_image">
+              <img onclick="playaudio('audio6')" src="Images/chand.jpeg" />
+              <audio id="audio6" src="songs/Chaand Baaliyan(PagalWorld.com.se).mp3"></audio>
+            </div>
+            <div class="card_title">
+              <p>Chaand Baaliyan</p>
+            </div>
+            <div class="song_artist">
+              <p>Aditya A</p>
+            </div>
+          </div>
+
+
+          <div class="card 2">
+            <div class="card_image">
+              <img onclick="playaudio('audio7')" src="Images/kes.jpeg" />
+              <audio id="audio7" src="songs/Kesariya Tera Ishq Hai Piya(PagalWorld.com.se).mp3"></audio>
+            </div>
+            <div class="card_title ">
+              <p>Kesariya</p>
+            </div>
+            <div class="song_artist">
+              <p>Arijit Singh</p>
+            </div>
+          </div>
+
+
+          <div class="card 3">
+            <div class="card_image">
+              <img onclick="playaudio('audio8')" src="Images/tere.jpeg" />
+              <audio id="audio8" src="songs/Tere Pyar Mein(PagalWorld.com.se).mp3"></audio>
+            </div>
+            <div class="card_title">
+              <p>Tere Pyaar Mein</p>
+            </div>
+            <div class="song_artist">
+              <p>Arijit Singh</p>
+            </div>
+          </div>
+
+
+          <div class="card 4">
+            <div class="card_image">
+              <img onclick="playaudio('audio9')" src="Images/ab67616d0000b273efe374ffabeb543840dee228.jpeg" />
+              <audio id="audio9" src="songs/Jugnu(PagalWorld.com.se).mp3"></audio>
+            </div>
+            <div class="card_title">
+              <p>Jugnu</p>
+            </div>
+            <div class="song_artist">
+              <p>Badshah,Nikitha Gandhi</p>
+            </div>
+          </div>
+
+
+          <div class="card 5">
+            <div class="card_image">
+              <img onclick="playaudio('audio10')" src="Images/ab67616d0000b2733f3d35703bdcd917dad51c4f.jpeg" />
+              <audio id="audio10" src="songs/Pasoori(PagalWorld.com.se).mp3"></audio>
+            </div>
+            <div class="card_title">
+              <p>Pasoori</p>
+            </div>
+            <div class="song_artist">
+              <p>Shae Gill, Ali Sethi</p>
+            </div>
+          </div>
+        </div>
+        <script>
+          var currentAudio;
+
+          function playaudio(audioId) {
+            var audio = document.getElementById(audioId);
+
+            if (currentAudio && currentAudio !== audio) {
+              currentAudio.pause();
+              currentAudio.currentTime = 0;
+            }
+
+            if (audio.paused) {
+              audio.play();
+            } else {
+              audio.pause();
+            }
+
+            currentAudio = audio;
+          }
+        </script>
+      </a>
+
+      <br><br><br><br>
+
+      <hr>
+
+      <!-- Artist block -->
+
+      <div>
+        <div class="title">
+          <h2 id="Artist"> Artist </h2>
+
+        </div>
+
+        <br><br><br><br>
+
+        <div class="wrapper">
+          <div class="carousel owl-carousel">
+            <div class="cardc">
+              <img src="Images/Arijith.jpg" alt="">
+              <h4 id="clickable-heading">Arijith Singh</h4>
+            </div>
+            <div class="cardc">
+              <img src="Images/Taylor.jpg" alt="">
+              <h4>Taylor Swift</h4>
+            </div>
+            <div class="cardc">
+              <img src="Images/Pritam.jpg" alt="">
+              <h4>Pritham </h4>
+            </div>
+            <div class="cardc">
+              <img src="Images/Harry.webp" alt="">
+              <h4>Harry Styles</h4>
+            </div>
+            <div class="cardc">
+              <img src="Images/Shreya.jpg" alt="">
+              <h4>Shreya Goshal</h4>
+            </div>
+          </div>
+        </div>
+        <script>
+          $(".carousel").owlCarousel({
+            margin: 20,
+            loop: true,
+            
+            responsive: {
+              0: {
+                items: 1,
+                nav: false
+              },
+              600: {
+                items: 2,
+                nav: false
+              },
+              1000: {
+                items: 3,
+                nav: false
+              }
+            }
+          });
+        </script>
+        <script>
+          const clickableHeading = document.getElementById('clickable-heading');
+          clickableHeading.addEventListener('click', function () {
+            window.location.href = 'artist_part/artist_playlist.html';
+          });
+        </script>
+      </div>
+    </div>
+    <br><br><br><br>
+
+    <hr>
+
+
+    <!-- Genre Block -->
+
+    <a name="Genre">
+      <div class="title">
+        <h2> Genre </h2>
+      </div>
+      <br><br>
+      <div class="genreContainer">
+        <div class="grid-wrapper">
+          <div class="genreimage" id="img1">
+            <img src="Images/classical.jpg" alt="">
+            <h4 class="hide">Classical</h4>
+          </div>
+          <div class="genreimage" id="img2">
+            <img src="Images/folk.jpg" alt="">
+            <h4 class="hide">Folk</h4>
+          </div>
+          <div class="tall" id="img3">
+            <img src="Images/blues.jpg" alt="">
+            <h4 class="hide">Pop</h4>
+          </div>
+          <div class="wide" id="img4">
+            <img src="Images/dancing.jpg" alt="">
+            <h4 id="clickable-heading3" class="hide">Dancing</h4>
+          </div>
+          <div class="genreimage" id="img5">
+            <img src="Images/hiphop.avif" alt="">
+            <h4 class="hide">Hip Hop</h4>
+          </div>
+          <div class="genreimage" id="img6">
+            <img src="Images/bollywood.webp" alt="">
+            <h4 class="hide">Bollywood Mix</h4>
+          </div>
+        </div>
+      </div>
+      <script>
+        const clickableHeading3 = document.getElementById('clickable-heading3');
+        clickableHeading3.addEventListener('click', function () {
+          window.location.href = 'genre_part/pop.html';
+        });
+      </script>
+
+
+    </a>
+    <br><br><br><br>
+
+    <hr>
+
+    <!-- Album block -->
+
+    <a name="Album">
+      <div class="title">
+        <h2> Album </h2>
+      </div>
+      <br><br><br><br>
+      <div class="block_1">
+        <div class="wrapper">
+          <div class="carousel owl-carousel">
+            <div class="cardc">
+              <img src="Images/album1.png" alt="">
+              <h4 id="clickable-heading1">Reputation</h4>
+            </div>
+            <div class="cardc">
+              <img src="Images/album2.webp" alt="">
+              <h4>Thriller</h4>
+            </div>
+            <div class="cardc">
+              <img src="Images/album3.avif" alt="">
+              <h4>Devdas </h4>
+            </div>
+            <div class="cardc">
+              <img src="Images/album4.jpg" alt="">
+              <h4>Jag Chanda</h4>
+            </div>
+            <div class="cardc">
+              <img src="Images/album5.jpg" alt="">
+              <h4>The Fame</h4>
+            </div>
+          </div>
+        </div>
+        <script>
+          $(".carousel").owlCarousel({
+            margin: 20,
+            loop: true,
+           
+            responsive: {
+              0: {
+                items: 1,
+                nav: false
+              },
+              600: {
+                items: 2,
+                nav: false
+              },
+              1000: {
+                items: 3,
+                nav: false
+              }
+            }
+          });
+        </script>
+        <script>
+          const clickableHeading1 = document.getElementById('clickable-heading1');
+          clickableHeading1.addEventListener('click', function () {
+            window.location.href = 'album_part/album_playlist.html';
+          });
+        </script>
+      </div>
+    </a>
+    <br><br><br>
+
+
+
+    <div>
+      <footer>
+        <div class="content_footer">
+          <div class="top_footer">
+
+            <div class="media-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+
+
+
+          <div class="bottom-details">
+            <div class="bottom_text_footer">
+              <span class="copyright_text">Copyright © 2023. All rights reserved</span>
+            </div>
+          </div>
+      </footer>
+
+    </div>
+
+
+
+
+  </div>
+  </div>
+
+
+</body>
+
+</html>
